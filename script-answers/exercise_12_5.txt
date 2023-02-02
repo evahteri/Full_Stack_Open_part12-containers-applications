@@ -1,0 +1,74 @@
+Script started on 2023-02-02 09:59:01+02:00 [TERM="xterm-256color" TTY="/dev/pts/9" COLUMNS="194" LINES="17"]
+[?2004h]0;evahteri@lx1-fuxi219: ~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[01;32mevahteri@lx1-fuxi219[00m:[01;34m~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[00m$ touch Dockerfile
+[?2004l
+[?2004h]0;evahteri@lx1-fuxi219: ~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[01;32mevahteri@lx1-fuxi219[00m:[01;34m~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[00m$ docker[K[K[K[K[K[Ksudo docker build -t todo-app .
+[?2004l
+[sudo] password for evahteri: 
+Sending build context to Docker daemon  557.1kB
+Sending build context to Docker daemon  13.67MB
+
+
+Error response from daemon: the Dockerfile (Dockerfile) cannot be empty
+[?2004h]0;evahteri@lx1-fuxi219: ~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[01;32mevahteri@lx1-fuxi219[00m:[01;34m~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[00m$ sudo docker build -t todo-app .
+[?2004l
+Sending build context to Docker daemon  557.1kB
+Sending build context to Docker daemon  13.67MB
+
+
+Step 1/6 : FROM node:16
+ ---> aa2c07b3a605
+Step 2/6 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> bb6f3eab652b
+Step 3/6 : COPY --chown=node:node . .
+ ---> 8df7d247d7f8
+Step 4/6 : RUN npm ci --only=production
+ ---> Running in 071a52d244f9
+[91mnpm[0m[91m WARN config only Use `--omit=dev` to omit dev dependencies from the install.
+[0m
+added 88 packages, and audited 89 packages in 2s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+5 vulnerabilities (3 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[91mnpm notice[0m[91m 
+npm [0m[91mnotice New major version of npm available! 8.19.3 -> 9.4.1
+[0m[91mnpm[0m[91m notice[0m[91m Changelog: <https://github.com/npm/cli/releases/tag/v9.4.1>
+npm [0m[91mnotice[0m[91m Run `npm install -g npm@9.4.1` to update!
+npm [0m[91mnotice 
+[0mRemoving intermediate container 071a52d244f9
+ ---> e9b9faaaf64e
+Step 5/6 : USER node
+ ---> Running in 50f88faa2bad
+Removing intermediate container 50f88faa2bad
+ ---> e098c5c64cfa
+Step 6/6 : CMD DEBUG=playground:* npm start
+ ---> Running in ad2ca81525db
+Removing intermediate container ad2ca81525db
+ ---> 4601f4faebfc
+Successfully built 4601f4faebfc
+Successfully tagged todo-app:latest
+[?2004h]0;evahteri@lx1-fuxi219: ~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[01;32mevahteri@lx1-fuxi219[00m:[01;34m~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[00m$ sudo docker run -p 3000:3000 todo-app
+[?2004l
+
+> todo-express-backend@0.0.0 start
+> node ./bin/www
+
+[0mGET / [32m200 [0m2.356 ms - 12[0m
+[0mGET / [32m200 [0m0.335 ms - 12[0m
+[0mGET / [32m200 [0m0.211 ms - 12[0m
+^C
+^C[?2004h]0;evahteri@lx1-fuxi219: ~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[01;32mevahteri@lx1-fuxi219[00m:[01;34m~/Koulu/Full_Stack_Open_part12/Full_Stack_Open_part12-containers-applications/todo-app/todo-backend[00m$ exit
+[?2004l
+exit
+
+Script done on 2023-02-02 10:05:30+02:00 [COMMAND_EXIT_CODE="137"]
